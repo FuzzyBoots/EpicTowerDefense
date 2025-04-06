@@ -1,0 +1,16 @@
+{
+  "name": "HTML (Packages + Content)",
+  "description": null,
+  "version": 1,
+  "date": "2025-03-31T21:53:58.0935705+02:00",
+  "readOnly": true,
+  "isSample": false,
+  "fixedTargetFolder": true,
+  "needsDataPath": true,
+  "needsImagePath": true,
+  "packageFields": null,
+  "fileFields": null,
+  "inheritFrom": null,
+  "moveFiles": null,
+  "deleteFiles": null
+}
