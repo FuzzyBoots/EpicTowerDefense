@@ -1,0 +1,30 @@
+Dirty Cook Studio Copyright License
+
+Product: Dissolve Shader Pack
+Publisher: Dirty Cook Studio
+
+1. Grant of License
+Dirty Cook Studio grants you a non-exclusive, non-transferable license to use the Dissolve Shader Pack for Unity package ("Package") in accordance with the terms and conditions outlined below.
+
+2. Permitted Use
+You are permitted to:
+
+Use the Package in Unity Projects: This license allows you to use, integrate, and modify the Package within your Unity-based games or applications.
+Distribute Commercially: You may distribute and sell games or applications that incorporate the Package, provided such distribution is through a compiled format only (e.g., as an executable game or application) and does not include access to the Package source code.
+3. Prohibited Use
+You are NOT permitted to:
+
+Resell or Redistribute the Package: You may not sell, sublicense, or otherwise distribute the Package itself, whether in original or modified form, as a standalone product or as part of a development tool or package.
+Use Outside of Unity: The Package is licensed exclusively for use within projects created using the Unity game engine. Use in other environments is prohibited.
+4. Ownership and Copyright
+The Package is the intellectual property of Dirty Cook Studio and is protected by copyright law. Dirty Cook Studio retains all rights, title, and interest in and to the Package. This license grants limited rights to use the Package but does not transfer ownership or any other rights.
+
+5. Limitation of Liability
+The Package is provided "as-is" without warranties of any kind, express or implied. Dirty Cook Studio shall not be held liable for any damages arising from the use or inability to use the Package in your projects.
+
+6. Termination
+This license is effective until terminated. Violation of any terms will result in an automatic termination of this license, and you must cease all use of the Package and remove it from any projects.
+
+By using the Dissolve Shader Pack for Unity package, you agree to the terms of this license.
+
+Copyright © 2025 Dirty Cook Studio. All rights reserved.

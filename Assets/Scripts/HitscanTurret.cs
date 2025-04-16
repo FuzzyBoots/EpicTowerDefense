@@ -1,3 +1,4 @@
+using GameDevHQ.FileBase.Gatling_Gun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,9 +13,10 @@ public class HitscanTurret : MonoBehaviour
 
     [SerializeField] GameObject _turretObject;
 
-    [SerializeField] ParticleSystem _muzzleFlash;
-    
     [SerializeField] GameObject _closestEnemy;
+    [SerializeField] float _idleTurnSpeed = 0.2f;
+
+    [SerializeField] Gatling_Gun _gun;
 
     private void OnDrawGizmos()
     {
@@ -33,32 +35,36 @@ public class HitscanTurret : MonoBehaviour
     {
         if (_closestEnemy == null)
         {
+            _gun.Firing = false;
             return;
         }
 
         float distance = Vector3.Distance(transform.position, _closestEnemy.transform.position);
         if ( distance > _attackRange)
         {
-            Debug.Log("Lost sight of " + _closestEnemy.name);
             _closestEnemy = null;
             return;
         }
 
         Vector3 targetVector = _closestEnemy.transform.position - transform.position;
         // Rotate toward the hit
-        Debug.Log("Rotating toward " + _closestEnemy.name);
         _turretObject.transform.forward = Vector3.RotateTowards(_turretObject.transform.forward, targetVector, _turnSpeed * Time.deltaTime, 0f);
 
         // If in target arc, fire
         if (Vector3.Angle(_turretObject.transform.forward, targetVector) < _targetingArc)
         {
-            // _muzzleFlash.Play();
-            Debug.Log("Shooting for " + _damagePerSecond * Time.deltaTime);
+            _gun.Firing = true;
+            
             // Play the animation for firing
-            if (_closestEnemy.TryGetComponent<Damageable>(out Damageable target))
+            if (_closestEnemy.TryGetComponent<IDamageable>(out IDamageable target))
             {
                 target.Damage(_damagePerSecond * Time.deltaTime);
+                
+                if (target.IsDead()) { _closestEnemy = null; Debug.Log("Enemy Dead"); }
             }
+        } else
+        {
+            _gun.Firing = false;
         }
     }
 
@@ -73,6 +79,9 @@ public class HitscanTurret : MonoBehaviour
 
         if (contacts.Length < 1)
         {
+            // General spin
+            _turretObject.transform.Rotate(Vector3.up, _idleTurnSpeed * Time.deltaTime);
+            _gun.Firing = false;
             return;
         }
 
