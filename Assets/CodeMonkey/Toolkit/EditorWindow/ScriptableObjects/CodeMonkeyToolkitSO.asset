@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.0.2
   subtype: toolkit
-  lastShownTimestamp: 1743482144
+  lastShownTimestamp: 1744740633
   toolSOList:
   - {fileID: 11400000, guid: 1b96a072ad3869f47920825dbc9c1aa5, type: 2}
   - {fileID: 11400000, guid: 8c716cde35b6b2547b1785a4e840af57, type: 2}
@@ -63,35 +63,39 @@ MonoBehaviour:
     version: 1.0.2
     versionUrl: https://cmonkey.co/toolkit
     enabled: 1
-  checkedLastUpdateTimestamp: 1743556465
+  checkedLastUpdateTimestamp: 1744741560
   lastQOTDResponse:
-    questionId: 166
-    questionText: What is JSON and what is it useful for?
-    answerA: JavaScript Over Node, programming pattern
-    answerB: JavaScript Object Notation, data format
-    answerC: Jumping-Signal Over Nonce, crypto concept
+    questionId: 171
+    questionText: 'Is this valid code?
+
+      <p>string state = (health > 0) ? "ALIVE"
+      : "DEAD";</p>'
+    answerA: Yes
+    answerB: No
+    answerC: 
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1743556465
+  lastQotdTimestamp: 1744741560
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleBundleSyntyMar25Extended.png
-    topText: Make ANY game with these awesome Assets! (97% OFF!)
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleApr25GUI.png
+    topText: Awesome Giant UI pack! Definitely get it to get a giant library of UI
+      elements 97% OFF!
     topLink: humblebundle
     bottomText: Learn Unity DOTS for MASSIVE Performance Boosts! (and make an RTS)
     bottomLink: dotscourse
-  lastDynamicHeaderTimestamp: 1743556465
+  lastDynamicHeaderTimestamp: 1744741560
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/toolkit">Please write a Review on the Asset
       Store!</a>
-  websiteLatestMessageTimestamp: 1743556465
+  websiteLatestMessageTimestamp: 1744741560
   websiteLatestVideos:
     videos:
-    - youTubeId: 79an2JDe51g
-      title: NO MORE PROGRAMMING, let's do Pen Spinning instead!
-    - youTubeId: BR1HFAj2v-Y
-      title: This GAME made $28 MILLION! Why?
-    - youTubeId: SJClo9ny1kM
-      title: TOP 20 Visual Assets to INSPIRE YOU! (MARCH 2025)
-    - youTubeId: 2-B1HH0rWRI
-      title: EVERYTHING Steam did in 2024! (Devs NEED to Know)
-  websiteLatestVideosTimestamp: 1743556465
+    - youTubeId: TZtbhCoff9Y
+      title: I found a MAGICAL GitHub project! (FREE Desktop in Unity!)
+    - youTubeId: aYKnB1OWuYA
+      title: TONS of AWESOME Assets up to 99% OFF! (Multiple Bundles and Spring Sales)
+    - youTubeId: zgJHRiounHs
+      title: The Problem of Making more MONEY with Assets than Games
+    - youTubeId: wejUWjCVW94
+      title: The 10 BEST Game Dev Beginner Projects to Make!
+  websiteLatestVideosTimestamp: 1744741560
