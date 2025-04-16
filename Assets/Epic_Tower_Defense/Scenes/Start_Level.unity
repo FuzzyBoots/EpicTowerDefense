@@ -1668,9 +1668,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Good
-
-'
+  m_Text: Good
 --- !u!222 &254106826
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4982,11 +4980,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e151afad4b785b747ab5b75cff4c628d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xExtents: {x: -47, y: -35}
-  zExtents: {x: -12, y: 3}
+  _xExtents: {x: -47, y: -35}
+  _yExtents: {x: 15, y: 25}
+  _zExtents: {x: -12, y: 3}
   _center: {x: -35, y: 20, z: -6}
   _camera: {fileID: 534669904}
-  _moveSpeed: 12
+  _2dMoveSpeed: 1
+  _zMoveSpeed: 50
 --- !u!4 &995270574
 Transform:
   m_ObjectHideFlags: 0
