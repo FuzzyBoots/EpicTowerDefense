@@ -101,3 +101,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89315fbead9fc4b40a1d2f341ce94164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchoredPosition: {x: 0, y: 0}
+  sizeDelta: {x: 1, y: 1}

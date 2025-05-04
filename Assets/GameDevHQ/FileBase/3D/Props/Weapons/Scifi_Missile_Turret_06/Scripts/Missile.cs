@@ -23,6 +23,8 @@ namespace GameDevHQ.FileBase.Missile_Launcher.Missile
         private float _power; //power of the rocket
         [SerializeField] //fuse delay of the rocket
         private float _fuseDelay;
+        [SerializeField] //damage done by rocket
+        private float _damage;
 
         private Rigidbody _rigidbody; //reference to the rigidbody of the rocket
         private AudioSource _audioSource; //reference to the audiosource of the rocket
@@ -123,7 +125,10 @@ namespace GameDevHQ.FileBase.Missile_Launcher.Missile
 
         private void OnCollisionEnter(Collision other)
         {
-            Destroy(other.gameObject); //destroy collided object
+            Debug.Log("Collided");
+            if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable target)) { 
+                target.Damage(_damage);
+            }
 
             if (_explosionPrefab != null)
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity); //instantiate explosion

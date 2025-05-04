@@ -1,39 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RangedHitscanEnemy : EnemyNavMeshAgent
 {
     [SerializeField] private float _attackRange = 4f;
-    [SerializeField] float _attackDamage = 5f;
     private GameObject _closestEnemy;
-    private GameObject _turretObject;
+    [SerializeField] private GameObject _turretObject;
 
     [SerializeField] private float _idleTurnSpeed = 0.2f;
+    [SerializeField] private float _turnSpeed = 1f;
+    [SerializeField] private float _targetingArc = 10f;
+    [SerializeField] private float _damagePerSecond = 1f;
+    private object _gun;
 
     protected override PlayerAttackable[] GetTargets()
     {        
-        Collider[] contacts = Physics.OverlapSphere(transform.position, _attackRange, LayerMask.GetMask("Enemy"));
+        List<Collider> contacts = Physics.OverlapSphere(transform.position, _attackRange, LayerMask.GetMask("Enemy")).ToList<Collider>();
 
-        if (contacts.Length < 1)
+        // if (contacts.Length < 1)
+        // {
+        //     // General spin
+        //     _turretObject.transform.forward = Vector3.RotateTowards(transform.forward, _turretObject.transform.forward, _idleTurnSpeed * Time.deltaTime, 0f);
+        //     _gun.Firing = false;
+        //     return;
+        // }
+
+        // _closestEnemy = contacts[0].gameObject;
+        // float _closestDistance = Vector3.Distance(transform.position, _closestEnemy.transform.position);
+
+        // for (int i = 1; i < contacts.Length; i++)
+        // {
+        //     float distance = Vector3.Distance(transform.position, contacts[i].gameObject.transform.position);
+        //     if (distance < _closestDistance) {
+        //         _closestDistance = distance;
+        //         _closestEnemy = contacts[i].gameObject;
+        //     }
+        // }   
+        List<PlayerAttackable> targets = new List<PlayerAttackable>();
+        foreach (Collider c in contacts)
         {
-            // General spin
-            _turretObject.transform.forward = Vector3.RotateTowards(transform.forward, _turretObject.transform.forward, _idleTurnSpeed * Time.deltaTime, 0f);
-            _gun.Firing = false;
-            return;
-        }
-
-        _closestEnemy = contacts[0].gameObject;
-        float _closestDistance = Vector3.Distance(transform.position, _closestEnemy.transform.position);
-
-        for (int i = 1; i < contacts.Length; i++)
-        {
-            float distance = Vector3.Distance(transform.position, contacts[i].gameObject.transform.position);
-            if (distance < _closestDistance) {
-                _closestDistance = distance;
-                _closestEnemy = contacts[i].gameObject;
+            if (c.gameObject.TryGetComponent<PlayerAttackable>(out PlayerAttackable target))
+            {
+                targets.Add(target);
             }
-        }   
+        }
+        return targets.ToArray();
     }
 
     protected override void PerformAttack(PlayerAttackable nearestTarget)
@@ -58,7 +71,7 @@ public class RangedHitscanEnemy : EnemyNavMeshAgent
         // If in target arc, fire
         if (Vector3.Angle(_turretObject.transform.forward, targetVector) < _targetingArc)
         {
-            _gun.Firing = true;
+            // _gun.Firing = true;
             
             // Play the animation for firing
             if (_closestEnemy.TryGetComponent<IDamageable>(out IDamageable target))
@@ -69,7 +82,7 @@ public class RangedHitscanEnemy : EnemyNavMeshAgent
             }
         } else
         {
-            _gun.Firing = false;
+            // _gun.Firing = false;
         }
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 
 public enum EnemyState
 {
@@ -21,7 +22,7 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
 
     [SerializeField] PlayerAttackable _nearestTarget;
 
-    Animator _animator;
+    protected Animator _animator;
 
     [SerializeField] float _health = 50f;
 
@@ -73,9 +74,10 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-        transform.position = _start.position;
-        _agent.SetDestination(_end.position);
+        Assert.IsNotNull(_agent, "NavMeshAgent not set up!");
 
+        transform.position = _start.position;
+        
         _animator = GetComponent<Animator>();
     }
 
@@ -86,6 +88,8 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
         {
             return;
         }
+
+        Debug.Log($"Agent: {_agent != null}", this);
 
         if (_nearestTarget == null)
         {
@@ -108,16 +112,23 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
             }
         }
 
+        _state = _nearestTarget == null ? EnemyState.Moving : EnemyState.Attacking;
+
         switch (_state) {
             case EnemyState.Moving:
-                _agent.SetDestination(_end.position);
+                if (_agent && _end)
+                {
+                    Debug.Log("Setting Destination as " + _end.position, this);
+                    
+                    _agent.SetDestination(_end.position);
+                }
                 break;
             case EnemyState.Attacking:
                 _agent.SetDestination(_nearestTarget.gameObject.transform.position);
                 PerformAttack(_nearestTarget);
                 break;
         }
-
+               
         _animator.SetFloat("Speed", _agent.velocity.magnitude);
     }
 

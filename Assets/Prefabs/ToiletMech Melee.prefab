@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
       propertyPath: m_Name
-      value: ToiletMech
+      value: ToiletMech Melee
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
@@ -83,11 +83,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8613123572128522611}
+      addedObject: {fileID: 6836600097964338228}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6836600097964338228}
+      addedObject: {fileID: -102802440063889868}
   m_SourcePrefab: {fileID: 100100000, guid: fc3956512bc7215439fff8c79e83ed8c, type: 3}
 --- !u!1 &649523682491002299 stripped
 GameObject:
@@ -138,22 +138,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8613123572128522611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649523682491002299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27bca1f9e36595844a539b431d960687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _start: {fileID: 0}
-  _end: {fileID: 0}
-  _health: 30
-  _deathDelay: 2
 --- !u!136 &6836600097964338228
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -177,3 +161,23 @@ CapsuleCollider:
   m_Height: 2.8976376
   m_Direction: 1
   m_Center: {x: 0, y: 0.9488188, z: 0}
+--- !u!114 &-102802440063889868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649523682491002299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7337c8cd0a83d548bdbc66597519a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  _start: {fileID: 0}
+  _end: {fileID: 0}
+  _nearestTarget: {fileID: 0}
+  _health: 50
+  _deathDelay: 0.5
+  _detectRange: 2
+  _attackRange: 0.5
