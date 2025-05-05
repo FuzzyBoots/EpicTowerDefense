@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameDevHQ.FileBase.Missile_Launcher.Missile;
+using System;
 
 /*
  *@author GameDevHQ 
@@ -38,44 +39,55 @@ namespace GameDevHQ.FileBase.Missile_Launcher
         [SerializeField]
         private float _destroyTime = 10.0f; //how long till the rockets get cleaned up
         private bool _launched; //bool to check if we launched the rockets
-        [SerializeField]
-        private Transform _target; //Who should the rocket fire at?
 
+        private int _missileIndex; // Which missile should we be firing next?
 
-        private void Update()
+        private int _missilesAvailable;    // How many missiles are currently available
+
+        private float _timeForNextFire = 0;
+
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _launched == false) //check for space key and if we launched the rockets
+            _missileIndex = 0;
+            _missilesAvailable = _misslePositions.Length;
+        }
+
+        public void FireMissile(Transform target)
+        {
+            if (_missilesAvailable > 0 && Time.time >= _timeForNextFire)
             {
-                _launched = true; //set the launch bool to true
-                StartCoroutine(FireRocketsRoutine()); //start a coroutine that fires the rockets. 
+                FireRocketsRoutine(target);
+                Debug.Log($"Fire delay by {_fireDelay}");
+                _timeForNextFire = Time.time + _fireDelay;
+                Debug.Log($"This should mean that the next time to fire is {_timeForNextFire}");
             }
         }
 
-        IEnumerator FireRocketsRoutine()
+        void FireRocketsRoutine(Transform target)
         {
-            for (int i = 0; i < _misslePositions.Length; i++) //for loop to iterate through each missle position
-            {
-                GameObject rocket = Instantiate(_missilePrefab) as GameObject; //instantiate a rocket
+            GameObject rocket = Instantiate(_missilePrefab) as GameObject; //instantiate a rocket
 
-                rocket.transform.parent = _misslePositions[i].transform; //set the rockets parent to the missle launch position 
-                rocket.transform.localPosition = Vector3.zero; //set the rocket position values to zero
-                rocket.transform.localEulerAngles = new Vector3(-90, 0, 0); //set the rotation values to be properly aligned with the rockets forward direction
-                rocket.transform.parent = null; //set the rocket parent to null
+            rocket.transform.parent = _misslePositions[_missileIndex].transform; //set the rockets parent to the missile launch position 
+            rocket.transform.localPosition = Vector3.zero; //set the rocket position values to zero
+            rocket.transform.localEulerAngles = new Vector3(-90, 0, 0); //set the rotation values to be properly aligned with the rockets forward direction
+            rocket.transform.parent = null; //set the rocket parent to null
 
-                rocket.GetComponent<GameDevHQ.FileBase.Missile_Launcher.Missile.Missile>().AssignMissleRules(_missileType, _target, _launchSpeed, _power, _fuseDelay, _destroyTime); //assign missle properties 
+            rocket.GetComponent<GameDevHQ.FileBase.Missile_Launcher.Missile.Missile>().AssignMissleRules(_missileType, target, _launchSpeed, _power, _fuseDelay, _destroyTime); //assign missile properties 
 
-                _misslePositions[i].SetActive(false); //turn off the rocket sitting in the turret to make it look like it fired
+            _misslePositions[_missileIndex].SetActive(false); //turn off the rocket sitting in the turret to make it look like it fired
 
-                yield return new WaitForSeconds(_fireDelay); //wait for the firedelay
-            }
+            StartCoroutine(ReloadMissileAfterDelay(_missileIndex));
 
-            for (int i = 0; i < _misslePositions.Length; i++) //itterate through missle positions
-            {
-                yield return new WaitForSeconds(_reloadTime); //wait for reload time
-                _misslePositions[i].SetActive(true); //enable fake rocket to show ready to fire
-            }
+            _missileIndex = (_missileIndex + 1) % _misslePositions.Length;
+            _missilesAvailable--;
+        }
 
-            _launched = false; //set launch bool to false
+        private IEnumerator ReloadMissileAfterDelay(int missileIndex)
+        {
+            yield return new WaitForSeconds(_reloadTime);
+
+            _misslePositions[missileIndex].SetActive(true);
+            _missilesAvailable++;
         }
     }
 }

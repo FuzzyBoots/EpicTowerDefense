@@ -29,6 +29,8 @@ namespace GameDevHQ.FileBase.Gatling_Gun
         private AudioSource _audioSource; //reference to the audio source component
         private bool _startWeaponNoise = true;
 
+        public bool Firing { get; set; }
+        
         // Use this for initialization
         void Start()
         {
@@ -43,7 +45,7 @@ namespace GameDevHQ.FileBase.Gatling_Gun
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButton(0)) //Check for left click (held) user input
+            if (Firing)
             { 
                 RotateBarrel(); //Call the rotation function responsible for rotating our gun barrel
                 Muzzle_Flash.SetActive(true); //enable muzzle effect particle effect
@@ -56,7 +58,7 @@ namespace GameDevHQ.FileBase.Gatling_Gun
                 }
 
             }
-            else if (Input.GetMouseButtonUp(0)) //Check for left click (release) user input
+            else
             {      
                 Muzzle_Flash.SetActive(false); //turn off muzzle flash particle effect
                 _audioSource.Stop(); //stop the sound effect from playing
