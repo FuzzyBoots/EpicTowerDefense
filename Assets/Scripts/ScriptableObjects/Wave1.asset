@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879f5c5cf0fb28c45b31bd06000c3524, type: 3}
+  m_Name: Wave1
+  m_EditorClassIdentifier: 
+  _waveName: Enter the Clowns
+  _spawns:
+  - {fileID: 11400000, guid: d409552582760c948b04f7ef88c1c808, type: 2}
+  - {fileID: 11400000, guid: 3065cb732cf74b14dbc3d01895ee3ff9, type: 2}
+  - {fileID: 11400000, guid: d409552582760c948b04f7ef88c1c808, type: 2}

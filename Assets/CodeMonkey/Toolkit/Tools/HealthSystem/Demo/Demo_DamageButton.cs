@@ -16,6 +16,7 @@ namespace CodeMonkey.Toolkit.THealthSystem.Demo {
             HealthSystem.TryGetHealthSystem(getHealthSystemGameObject, out HealthSystem healthSystem, true);
 
             GetComponent<Button>().onClick.AddListener(() => {
+                Debug.Log("Damage");
                 healthSystem.Damage(10);
             });
         }

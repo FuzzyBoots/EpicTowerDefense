@@ -46,14 +46,14 @@ public class HitscanTurret : MonoBehaviour
 
         Vector3 targetVector = _closestEnemy.transform.position - transform.position;
         // Rotate toward the hit
-        Debug.Log("Rotating toward " + _closestEnemy.name);
+        // Debug.Log("Rotating toward " + _closestEnemy.name);
         _turretObject.transform.forward = Vector3.RotateTowards(_turretObject.transform.forward, targetVector, _turnSpeed * Time.deltaTime, 0f);
 
         // If in target arc, fire
         if (Vector3.Angle(_turretObject.transform.forward, targetVector) < _targetingArc)
         {
             // _muzzleFlash.Play();
-            Debug.Log("Shooting for " + _damagePerSecond * Time.deltaTime);
+            // Debug.Log("Shooting for " + _damagePerSecond * Time.deltaTime);
             // Play the animation for firing
             if (_closestEnemy.TryGetComponent<Damageable>(out Damageable target))
             {
