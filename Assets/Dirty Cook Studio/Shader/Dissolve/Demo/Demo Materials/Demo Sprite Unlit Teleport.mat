@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Demo Sprite Unlit Teleport
-  m_Shader: {fileID: -6465566751694194690, guid: 94f324f536c15d84cb4bd9d867f06808, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 94f324f536c15d84cb4bd9d867f06808,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -62,11 +63,11 @@ Material:
     m_Floats:
     - _AlphaEdge1: 0.2
     - _AlphaEdge2: 0.5
-    - _DissolveAmount: 0
+    - _DissolveAmount: 0.5092316
     - _DissolveTexOpacity: 0.5
     - _DotsOpacity: 0.5
     - _DotsSize: 0.9
-    - _EdgeDepth: 0.5034936
+    - _EdgeDepth: 0.55
     - _EdgeNoiseScale: 57.4
     - _GradientNoiseScale: 40
     - _HexEdgeWidth: 0.2
@@ -91,4 +92,3 @@ Material:
     - _HexTiling: {r: 10, g: 10, b: 0, a: 0}
     - _HoundstoothTiling: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1

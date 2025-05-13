@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Demo Sprite Unlit 3
-  m_Shader: {fileID: -6465566751694194690, guid: 94f324f536c15d84cb4bd9d867f06808, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 94f324f536c15d84cb4bd9d867f06808,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -84,7 +85,7 @@ Material:
     - _AlphaEdge1: 0.2
     - _AlphaEdge2: 0.5
     - _AlphaThreshold: 0
-    - _DissolveAmount: 1
+    - _DissolveAmount: 0.22203356
     - _DissolveTexOpacity: 0.5
     - _Dissolve_Amount: 0
     - _DotsOpacity: 0.5
@@ -122,4 +123,3 @@ Material:
     - _HoundstoothTiling: {r: 5, g: 5, b: 0, a: 0}
     - _Specular_Color: {r: 0.51120853, g: 0.6415094, b: 0.493236, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1

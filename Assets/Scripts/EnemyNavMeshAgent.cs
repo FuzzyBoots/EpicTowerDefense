@@ -1,4 +1,5 @@
 using AmazingAssets.AdvancedDissolve.Examples;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,8 +18,7 @@ public enum EnemyState
 public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
 {
     [SerializeField] EnemyState _state = EnemyState.Moving;
-    [SerializeField] Transform _start;
-    [SerializeField] Transform _end;
+    [SerializeField] Vector3 _end;
 
     [SerializeField] PlayerAttackable _nearestTarget;
 
@@ -76,9 +76,8 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
         _agent = GetComponent<NavMeshAgent>();
         Assert.IsNotNull(_agent, "NavMeshAgent not set up!");
 
-        transform.position = _start.position;
-        
         _animator = GetComponent<Animator>();
+        Assert.IsNotNull(_animator, "No animator found");
     }
 
     // Update is called once per frame
@@ -116,11 +115,11 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
 
         switch (_state) {
             case EnemyState.Moving:
-                if (_agent && _end)
+                if (_agent)
                 {
-                    Debug.Log("Setting Destination as " + _end.position, this);
+                    Debug.Log("Setting Destination as " + _end, this);
                     
-                    _agent.SetDestination(_end.position);
+                    _agent.SetDestination(_end);
                 }
                 break;
             case EnemyState.Attacking:
@@ -135,4 +134,9 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
     protected abstract void PerformAttack(PlayerAttackable nearestTarget);
 
     protected abstract PlayerAttackable[] GetTargets();
+
+    internal void SetEnd(Vector3 position)
+    {
+        _end = position;
+    }
 }

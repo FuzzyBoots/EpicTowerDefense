@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Demo Sprite Unlit Fire
-  m_Shader: {fileID: -6465566751694194690, guid: 94f324f536c15d84cb4bd9d867f06808, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 94f324f536c15d84cb4bd9d867f06808,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -89,7 +90,7 @@ Material:
     - _Dissolve_Amount: 0
     - _DotsOpacity: 0.5
     - _DotsSize: 0.9
-    - _EdgeDepth: 0.39571467
+    - _EdgeDepth: 0.55
     - _EdgeNoiseScale: 86.8
     - _Edge_Depth: 0
     - _GradientNoiseScale: 10
@@ -122,4 +123,3 @@ Material:
     - _HoundstoothTiling: {r: 5, g: 5, b: 0, a: 0}
     - _Specular_Color: {r: 0.9236714, g: 0.9339623, b: 0.374466, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1

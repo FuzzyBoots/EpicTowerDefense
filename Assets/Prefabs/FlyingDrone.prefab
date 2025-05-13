@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2211095403818470491}
   - component: {fileID: 1162940176519597530}
   - component: {fileID: 3579719350431600178}
-  - component: {fileID: 8791347405302330533}
+  - component: {fileID: 7222117521546736122}
+  - component: {fileID: 3088851322144304470}
   m_Layer: 6
   m_Name: FlyingDrone
   m_TagString: Untagged
@@ -129,7 +130,28 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8791347405302330533
+--- !u!95 &7222117521546736122
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014952906875768456}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3088851322144304470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +160,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9014952906875768456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27bca1f9e36595844a539b431d960687, type: 3}
+  m_Script: {fileID: 11500000, guid: 3779cd3a70dbecd4a84d440e79618347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _state: 0
+  _end: {x: 0, y: 0, z: 0}
+  _nearestTarget: {fileID: 0}
+  _health: 50
+  _deathDelay: 0.5
