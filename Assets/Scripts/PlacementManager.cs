@@ -12,21 +12,17 @@ public class PlacementManager : MonoBehaviour
 
     GameObject _placementObject;
     
-    [SerializeField] bool _isValid;
+    bool _isValid;
     [SerializeField] private LayerMask _mouseColliderLayerMask;
-
-    List<Renderer> GetRenderers(GameObject target)
-    {
-        
-        var renderers = new List<Renderer>();
-
-        return renderers;
-    }
 
     void Start()
     {
-        _placementObject = Instantiate(_placementObject);
-        Debug.Log("Just placed the object!", _placementObject);
+        _placementObject = Instantiate(_placementPrefab);
+    }
+
+    public SetPlacementObject(GameObject placementObject)
+    {
+        _placementObject = placementObject;
     }
 
     // Start is called before the first frame update
@@ -59,14 +55,27 @@ public class PlacementManager : MonoBehaviour
         //    mat.shader = _isValid ? _validEffect : _invalidEffect;
         //}
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, _mouseColliderLayerMask))
+        if (_placementObject != null)
         {
-            _placementObject.transform.position = raycastHit.collider.gameObject.transform.position;
-        }
-        else
-        {
-            _placementObject.transform.position = MousePositionPlane.GetPosition();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, _mouseColliderLayerMask))
+            {
+                _placementObject.transform.position = raycastHit.collider.gameObject.transform.position;
+                _isValid = true;
+            }
+            else
+            {
+                _placementObject.transform.position = MousePositionPlane.GetPosition();
+                _isValid = false;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (_isValid)
+                {
+                    Instantiate(_placementPrefab, _placementObject.transform.position, Quaternion.identity);
+                }
+            }
         }
     }
 }
