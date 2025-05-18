@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.476835
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.6240039
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc3956512bc7215439fff8c79e83ed8c,
         type: 3}
@@ -174,10 +174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _state: 0
-  _start: {fileID: 0}
-  _end: {fileID: 0}
+  _end: {x: -20, y: 0, z: 0}
   _nearestTarget: {fileID: 0}
   _health: 50
   _deathDelay: 0.5
-  _detectRange: 2
-  _attackRange: 0.5
+  _detectRange: 3
+  _attackRange: 2
+  _damagePerSecond: 2

@@ -94,20 +94,25 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
         {
             // Try fetching one
             PlayerAttackable[] targets = GetTargets();
+            if (targets.Length > 0)
+            {
+                Debug.Log($"Detected {targets.Length}");
+            }
             float closestDistance = Mathf.Infinity;
             foreach (PlayerAttackable target in targets)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.gameObject.transform.position);
                 if (distanceToTarget < closestDistance)
                 {
+                    Debug.Log($"Distance to target {distanceToTarget}");
                     NavMeshPath path = new NavMeshPath();
-                    if (_agent.CalculatePath(target.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
-                    {
-                        // Do we allow partial paths? Might make sense for ranged attacks.
-                        _nearestTarget = target;
-                        closestDistance = distanceToTarget;
-                    }
+                    _nearestTarget = target;
+                    closestDistance = distanceToTarget;
                 }
+            }
+            if (_nearestTarget)
+            {
+                Debug.Log($"Nearest target is {_nearestTarget.name} at distance {closestDistance}");
             }
         }
 
@@ -123,6 +128,11 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
                 }
                 break;
             case EnemyState.Attacking:
+                if (_nearestTarget.IsDead())
+                {
+                    _nearestTarget = null;
+                    break;
+                }
                 _agent.SetDestination(_nearestTarget.gameObject.transform.position);
                 PerformAttack(_nearestTarget);
                 break;

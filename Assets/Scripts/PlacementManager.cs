@@ -20,7 +20,7 @@ public class PlacementManager : MonoBehaviour
         _placementObject = Instantiate(_placementPrefab);
     }
 
-    public SetPlacementObject(GameObject placementObject)
+    public void SetPlacementObject(GameObject placementObject)
     {
         _placementObject = placementObject;
     }

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitscanTurret : MonoBehaviour
+public class HitscanTurret : MonoBehaviour, IDamageable
 {
     [SerializeField] float _attackRange = 1f;
     [SerializeField] float _damagePerSecond = 10f;
@@ -15,6 +15,8 @@ public class HitscanTurret : MonoBehaviour
 
     [SerializeField] GameObject _closestEnemy;
     [SerializeField] float _idleTurnSpeed = 0.2f;
+
+    [SerializeField] float _health = 20f;
 
     [SerializeField] Gatling_Gun _gun;
 
@@ -48,7 +50,6 @@ public class HitscanTurret : MonoBehaviour
 
         Vector3 targetVector = _closestEnemy.transform.position - transform.position;
         // Rotate toward the hit
-        Debug.Log("Rotating toward " + _closestEnemy.name);
         _turretObject.transform.forward = Vector3.RotateTowards(_turretObject.transform.forward, targetVector, _turnSpeed * Time.deltaTime, 0f);
 
         // If in target arc, fire
@@ -97,5 +98,20 @@ public class HitscanTurret : MonoBehaviour
                 _closestEnemy = contacts[i].gameObject;
             }
         }        
+    }
+
+    public void Damage(float damage)
+    {
+        _health -= damage;
+        if (_health < 0)
+        {
+            // Do Damage animation
+            Destroy(this.gameObject);
+        }
+    }
+
+    public bool IsDead()
+    {
+        return _health < 0;
     }
 }

@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9078508740061806985}
-  - component: {fileID: 8956601278125419687}
-  - component: {fileID: 2211095403818470491}
   - component: {fileID: 1162940176519597530}
   - component: {fileID: 3579719350431600178}
   - component: {fileID: 7222117521546736122}
@@ -34,59 +32,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.574, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8540297325787945264}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8956601278125419687
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9014952906875768456}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2211095403818470491
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9014952906875768456}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 58b32bc9973e7a543a21c82ec84e4988, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &1162940176519597530
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -168,3 +117,77 @@ MonoBehaviour:
   _nearestTarget: {fileID: 0}
   _health: 50
   _deathDelay: 0.5
+--- !u!1001 &8146873557443575515
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9078508740061806985}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0031017102
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.49674892
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.031147456
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+        type: 3}
+      propertyPath: m_Name
+      value: Sci-Fi ToiletMech ToiletProps Skin 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c453bb7c56f58ab438ac0c58bc2c6cee, type: 3}
+--- !u!4 &8540297325787945264 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c453bb7c56f58ab438ac0c58bc2c6cee,
+    type: 3}
+  m_PrefabInstance: {fileID: 8146873557443575515}
+  m_PrefabAsset: {fileID: 0}
