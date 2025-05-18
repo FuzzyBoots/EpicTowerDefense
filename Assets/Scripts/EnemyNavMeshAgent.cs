@@ -88,8 +88,6 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
             return;
         }
 
-        Debug.Log($"Agent: {_agent != null}", this);
-
         if (_nearestTarget == null)
         {
             // Try fetching one
@@ -104,15 +102,10 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
                 float distanceToTarget = Vector3.Distance(transform.position, target.gameObject.transform.position);
                 if (distanceToTarget < closestDistance)
                 {
-                    Debug.Log($"Distance to target {distanceToTarget}");
                     NavMeshPath path = new NavMeshPath();
                     _nearestTarget = target;
                     closestDistance = distanceToTarget;
                 }
-            }
-            if (_nearestTarget)
-            {
-                Debug.Log($"Nearest target is {_nearestTarget.name} at distance {closestDistance}");
             }
         }
 

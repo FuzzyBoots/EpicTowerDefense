@@ -39,7 +39,6 @@ public class MeleeEnemy : EnemyNavMeshAgent
     protected override void PerformAttack(PlayerAttackable nearestTarget)
     {
         float attackDistance = Vector3.Distance(transform.position, nearestTarget.transform.position);
-        Debug.Log("Attack distance is " + attackDistance);
         if (attackDistance <= _attackRange)
         {
             transform.forward = Vector3.RotateTowards(transform.forward, nearestTarget.transform.position, 1f, 1f);
