@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitscanTurret : MonoBehaviour, IDamageable
+public class HitscanTurret : Turret, IDamageable
 {
     [SerializeField] float _attackRange = 1f;
     [SerializeField] float _damagePerSecond = 10f;
@@ -16,8 +16,6 @@ public class HitscanTurret : MonoBehaviour, IDamageable
     [SerializeField] GameObject _closestEnemy;
     [SerializeField] float _idleTurnSpeed = 0.2f;
 
-    [SerializeField] float _health = 20f;
-
     [SerializeField] Gatling_Gun _gun;
 
     private void OnDrawGizmos()
@@ -28,6 +26,8 @@ public class HitscanTurret : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        if (!_active) { return; }
+
         FindEnemy();
 
         AimAtAndShootAtCurrentEnemy();
@@ -98,20 +98,5 @@ public class HitscanTurret : MonoBehaviour, IDamageable
                 _closestEnemy = contacts[i].gameObject;
             }
         }        
-    }
-
-    public void Damage(float damage)
-    {
-        _health -= damage;
-        if (_health < 0)
-        {
-            // Do Damage animation
-            Destroy(this.gameObject);
-        }
-    }
-
-    public bool IsDead()
-    {
-        return _health < 0;
     }
 }

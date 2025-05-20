@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Missile_Launcher))]
-public class ProjectileTurret : MonoBehaviour
+public class ProjectileTurret : Turret
 {
     [SerializeField] float _attackRange = 3f;
     [SerializeField] float _turnSpeed = 5f;
@@ -29,6 +29,8 @@ public class ProjectileTurret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_active) { return; }
+        
         FindEnemy();
 
         AimAtAndShootAtCurrentEnemy();

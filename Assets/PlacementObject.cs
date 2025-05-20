@@ -1,10 +1,10 @@
+using QFSW.QC.Actions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlacementObject : MonoBehaviour
 {
-    GameObject _turretObject;
-
-    public GameObject TurretObject { get; set; }
+    [SerializeField] Turret _turretObject;
+    public Turret TurretObject { get { return _turretObject; } set { _turretObject = value; } }
 }

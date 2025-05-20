@@ -23,8 +23,13 @@ namespace GameDevHQ.FileBase.Missile_Launcher.Missile
         private float _power; //power of the rocket
         [SerializeField] //fuse delay of the rocket
         private float _fuseDelay;
-        [SerializeField] //damage done by rocket
+        [SerializeField] //damage done by rocket direct hit
         private float _damage;
+
+        [SerializeField] //damage done by rocket direct hit
+        private float _explosionDamage;
+        [SerializeField] //rocket explosion radius
+        private float _explosionRadius;
 
         private Rigidbody _rigidbody; //reference to the rigidbody of the rocket
         private AudioSource _audioSource; //reference to the audiosource of the rocket
@@ -125,9 +130,18 @@ namespace GameDevHQ.FileBase.Missile_Launcher.Missile
 
         private void OnCollisionEnter(Collision other)
         {
-            Debug.Log("Collided");
+
             if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable target)) { 
                 target.Damage(_damage);
+            }
+
+            Collider[] collateral = Physics.OverlapSphere(this.transform.position, _explosionRadius);
+            foreach (Collider collider in collateral)
+            {
+                if (collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
+                {
+                    damageable.Damage(_explosionDamage);
+                }
             }
 
             if (_explosionPrefab != null)

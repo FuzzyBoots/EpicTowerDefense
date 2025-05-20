@@ -178,6 +178,8 @@ MonoBehaviour:
   _power: 0
   _fuseDelay: 0
   _damage: 25
+  _explosionDamage: 10
+  _explosionRadius: 5
 --- !u!136 &622995038246941556
 CapsuleCollider:
   m_ObjectHideFlags: 0

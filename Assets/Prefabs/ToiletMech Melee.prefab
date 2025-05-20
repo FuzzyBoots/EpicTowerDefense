@@ -176,7 +176,7 @@ MonoBehaviour:
   _state: 0
   _end: {x: -20, y: 0, z: 0}
   _nearestTarget: {fileID: 0}
-  _health: 50
+  _health: 10
   _deathDelay: 0.5
   _detectRange: 3
   _attackRange: 2

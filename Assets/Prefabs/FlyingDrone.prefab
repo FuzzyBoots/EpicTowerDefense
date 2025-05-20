@@ -115,7 +115,7 @@ MonoBehaviour:
   _state: 0
   _end: {x: 0, y: 0, z: 0}
   _nearestTarget: {fileID: 0}
-  _health: 50
+  _health: 5
   _deathDelay: 0.5
 --- !u!1001 &8146873557443575515
 PrefabInstance:
