@@ -1664,7 +1664,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1392899201017719681, guid: fb7fe439a8a543e409df115df7814703,
             type: 3}
-          m_ObjectArgumentAssemblyTypeName: Turret, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Emplacement, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9615,7 +9615,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2386554084942296257, guid: 4b0736d59de7d9b41a499ea9be7cd8ce,
             type: 3}
-          m_ObjectArgumentAssemblyTypeName: Turret, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Emplacement, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -4,6 +4,8 @@ class GameManager : MonoBehaviour
 {
     [SerializeField] Transform _enemyGoalPoint;
     [SerializeField] int _currency;
+
+    public int Cash { get { return _currency; } }
     public Transform EnemyGoalPoint { get { return _enemyGoalPoint; } }
 
     public static GameManager Instance { get; private set; }
@@ -22,5 +24,11 @@ class GameManager : MonoBehaviour
     public void SetTimeScale(float timeScale)
     {
         Time.timeScale = timeScale;
+    }
+
+    public void ModifyCash(int amount)
+    {
+        _currency += amount;
+        // Update the UI
     }
 }

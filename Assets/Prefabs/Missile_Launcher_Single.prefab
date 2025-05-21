@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   _active: 0
+  _cost: 500
   _attackRange: 12
   _turnSpeed: 5
   _targetingArc: 5

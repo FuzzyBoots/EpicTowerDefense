@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Missile_Launcher))]
-public class ProjectileTurret : Turret
+public class ProjectileTurret : Emplacement
 {
     [SerializeField] float _attackRange = 3f;
     [SerializeField] float _turnSpeed = 5f;

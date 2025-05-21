@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitscanTurret : Turret, IDamageable
+public class HitscanTurret : Emplacement, IDamageable
 {
     [SerializeField] float _attackRange = 1f;
     [SerializeField] float _damagePerSecond = 10f;

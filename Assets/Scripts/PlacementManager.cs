@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 
 public class PlacementManager : MonoBehaviour
 {
-    [SerializeField] Turret _placementPrefab;
+    [SerializeField] Emplacement _placementPrefab;
 
     [SerializeField] Shader _invalidEffect;
     [SerializeField] Shader _validEffect;
 
-    Turret _placementObject;
+    Emplacement _placementObject;
     
     bool _isValid;
     [SerializeField] private LayerMask _mouseColliderLayerMask;
@@ -24,12 +24,12 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
-    public void SetPlacementObject(Turret incoming)
+    public void SetPlacementObject(Emplacement incoming)
     {
         Debug.Log("Attempting to change placement object to " + incoming);
         if (_placementObject)
         {
-            Destroy(_placementObject);
+            Destroy(_placementObject.gameObject);
         }
 
         _placementPrefab = incoming;
@@ -56,7 +56,7 @@ public class PlacementManager : MonoBehaviour
                 if (raycastHit.collider.gameObject.TryGetComponent<PlacementObject>(out placementPoint))
                 {
                     _placementObject.transform.position = raycastHit.collider.gameObject.transform.position;
-                    _isValid = placementPoint.TurretObject == null;
+                    _isValid = placementPoint.TurretObject == null && GameManager.Instance.Cash >= _placementObject.Cost;
                 }
             }
             else
@@ -69,8 +69,9 @@ public class PlacementManager : MonoBehaviour
             {
                 if (_isValid && placementPoint != null)
                 {
-                    Turret placed = Instantiate(_placementPrefab, _placementObject.transform.position, Quaternion.identity);
+                    Emplacement placed = Instantiate(_placementPrefab, _placementObject.transform.position, Quaternion.identity);
                     placementPoint.TurretObject = placed;
+                    GameManager.Instance.ModifyCash(-_placementObject.Cost);
                     placed.SetActive(true);
                 }
             }
