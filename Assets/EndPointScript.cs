@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EndPointScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (other.gameObject.TryGetComponent<EnemyNavMeshAgent>(out EnemyNavMeshAgent agent))
+        {
+            GameManager.Instance.ModifyLives(-1);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            agent.Celebrate();
+            agent.Disappear();
+        }
     }
 }
