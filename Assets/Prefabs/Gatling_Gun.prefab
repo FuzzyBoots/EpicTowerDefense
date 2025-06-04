@@ -417,7 +417,7 @@ MonoBehaviour:
   _damagePerSecond: 0.2
   _turnSpeed: 1
   _targetingArc: 5
-  _turretObject: {fileID: 7456614855349052339}
+  _turretObject: {fileID: 9066720013912788477}
   _closestEnemy: {fileID: 0}
   _idleTurnSpeed: 30
   _gun: {fileID: 7852425041452355188}

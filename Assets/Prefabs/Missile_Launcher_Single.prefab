@@ -80,7 +80,7 @@ MonoBehaviour:
   _attackRange: 12
   _turnSpeed: 5
   _targetingArc: 5
-  _turretObject: {fileID: 7757263428970150164}
+  _turretObject: {fileID: 712588481640905576}
   _launcher: {fileID: 9002923220146268300}
   _closestEnemy: {fileID: 0}
 --- !u!1 &712588481640905576

@@ -51,7 +51,7 @@ public class ProjectileTurret : Emplacement
             return;
         }
 
-        Vector3 targetVector = _closestEnemy.transform.position - transform.position;
+        Vector3 targetVector = _closestEnemy.transform.position - _turretObject.transform.position;
         // Rotate toward the hit
         _turretObject.transform.forward = Vector3.RotateTowards(_turretObject.transform.forward, targetVector, _turnSpeed * Time.deltaTime, 0f);
 

@@ -52,7 +52,7 @@ public class HitscanTurret : Emplacement, IDamageable
         Transform target = _closestEnemy.OffsetTarget ?
                 _closestEnemy.OffsetTarget.transform :
                 transform;
-        Vector3 targetVector = target.position - transform.position;
+        Vector3 targetVector = target.position - _turretObject.transform.position;
         // Rotate toward the hit
         _turretObject.transform.forward = Vector3.RotateTowards(_turretObject.transform.forward, targetVector, _turnSpeed * Time.deltaTime, 0f);
 
