@@ -356,7 +356,8 @@ Material:
     - _AdvancedDissolveEdgeAdditionalColorMapOffset: {r: 0, g: 0, b: 0, a: 0}
     - _AdvancedDissolveEdgeAdditionalColorMapScroll: {r: 0, g: 0, b: 0, a: 0}
     - _AdvancedDissolveEdgeAdditionalColorMapTiling: {r: 1, g: 1, b: 1, a: 1}
-    - _AdvancedDissolveEdgeBaseColor: {r: 0.91372555, g: 0.5019608, b: 0.12941177, a: 1}
+    - _AdvancedDissolveEdgeBaseColor: {r: 0.91372555, g: 0.5019608, b: 0.12941177,
+        a: 1}
     - _AdvancedDissolveEdgeBaseColorIntensity: {r: 2.5, g: 11.182494, b: 0, a: 0}
     - _AdvancedDissolveEdgeColor: {r: 0.9137255, g: 0.5009309, b: 0.12941176, a: 1}
     - _AdvancedDissolveEdgeColor2: {r: 1, g: 0, b: 0, a: 1}

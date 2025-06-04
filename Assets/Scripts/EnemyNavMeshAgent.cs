@@ -26,6 +26,8 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
 
     [SerializeField] float _health = 50f;
 
+    [SerializeField] int _reward = 100;
+
     NavMeshAgent _agent;
 
     bool _isDead = false;
@@ -47,25 +49,14 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
 
     private void HandleDeath()
     {
+        GameManager.Instance.ModifyCash(_reward);
         _animator.SetTrigger("Die");
         _isDead = true;
 
+        // Set it to default so that the enemy-seeking script doesn't waste cycles
         gameObject.layer = LayerMask.NameToLayer("Default");
 
-        // Disable the colliders
-        foreach (Collider collider in GetComponentsInChildren<Collider>())
-        {
-            collider.enabled = false;
-        }
-
-        _agent.isStopped = true;
-        foreach (Renderer renderer in gameObject.GetComponentsInChildren<Renderer>())
-        {
-            AnimateCutoutAndDestroy script = gameObject.AddComponent<AnimateCutoutAndDestroy>();
-
-            //Instantiate material and assign it to the script
-            script.material = renderer.material;
-        }
+        Disappear();
     }
 
     public bool IsDead()
@@ -144,5 +135,28 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
     internal void SetEnd(Vector3 position)
     {
         _end = position;
+    }
+
+    internal void Celebrate()
+    {
+        _animator.SetBool("Celebrating", true);
+    }
+
+    internal void Disappear()
+    {
+        // Disable the colliders
+        foreach (Collider collider in GetComponentsInChildren<Collider>())
+        {
+            collider.enabled = false;
+        }
+
+        _agent.isStopped = true;
+        foreach (Renderer renderer in gameObject.GetComponentsInChildren<Renderer>())
+        {
+            AnimateCutoutAndDestroy script = gameObject.AddComponent<AnimateCutoutAndDestroy>();
+
+            //Instantiate material and assign it to the script
+            script.material = renderer.material;
+        }
     }
 }
