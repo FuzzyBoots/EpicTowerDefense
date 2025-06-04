@@ -72,7 +72,7 @@ namespace GameDevHQ.FileBase.Missile_Launcher
             rocket.transform.localEulerAngles = new Vector3(-90, 0, 0); //set the rotation values to be properly aligned with the rockets forward direction
             rocket.transform.parent = null; //set the rocket parent to null
 
-            rocket.GetComponent<GameDevHQ.FileBase.Missile_Launcher.Missile.Missile>().AssignMissleRules(_missileType, target, _launchSpeed, _power, _fuseDelay, _destroyTime); //assign missile properties 
+            rocket.GetComponent<Missile.Missile>().AssignMissleRules(_missileType, target, _launchSpeed, _power, _fuseDelay, _destroyTime); //assign missile properties 
 
             _misslePositions[_missileIndex].SetActive(false); //turn off the rocket sitting in the turret to make it look like it fired
 

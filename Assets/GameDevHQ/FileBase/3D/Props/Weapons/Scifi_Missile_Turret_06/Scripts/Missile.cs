@@ -131,16 +131,23 @@ namespace GameDevHQ.FileBase.Missile_Launcher.Missile
         private void OnCollisionEnter(Collision other)
         {
 
-            if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable target)) { 
+            if (other.gameObject.TryGetComponent(out IDamageable target)) {
+                Debug.Log("Damaging " + other.gameObject.name, other.gameObject);
                 target.Damage(_damage);
+            } else
+            {
+                Debug.Log("Hit nondamageable " + other.gameObject.name);
             }
 
             Collider[] collateral = Physics.OverlapSphere(this.transform.position, _explosionRadius);
             foreach (Collider collider in collateral)
             {
-                if (collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
+                if (collider.gameObject.TryGetComponent(out IDamageable damageable))
                 {
                     damageable.Damage(_explosionDamage);
+                } else
+                {
+                    Debug.Log("Explosion hit nondamageable " + other.gameObject.name, collider.gameObject);
                 }
             }
 

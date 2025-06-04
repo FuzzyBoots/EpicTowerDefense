@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HitscanTurret : Emplacement, IDamageable
 {
@@ -13,7 +14,7 @@ public class HitscanTurret : Emplacement, IDamageable
 
     [SerializeField] GameObject _turretObject;
 
-    [SerializeField] GameObject _closestEnemy;
+    [SerializeField] EnemyNavMeshAgent _closestEnemy;
     [SerializeField] float _idleTurnSpeed = 0.2f;
 
     [SerializeField] Gatling_Gun _gun;
@@ -48,7 +49,10 @@ public class HitscanTurret : Emplacement, IDamageable
             return;
         }
 
-        Vector3 targetVector = _closestEnemy.transform.position - transform.position;
+        Transform target = _closestEnemy.OffsetTarget ?
+                _closestEnemy.OffsetTarget.transform :
+                transform;
+        Vector3 targetVector = target.position - transform.position;
         // Rotate toward the hit
         _turretObject.transform.forward = Vector3.RotateTowards(_turretObject.transform.forward, targetVector, _turnSpeed * Time.deltaTime, 0f);
 
@@ -58,11 +62,11 @@ public class HitscanTurret : Emplacement, IDamageable
             _gun.Firing = true;
             
             // Play the animation for firing
-            if (_closestEnemy.TryGetComponent<IDamageable>(out IDamageable target))
+            if (_closestEnemy.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
-                target.Damage(_damagePerSecond * Time.deltaTime);
+                damageable.Damage(_damagePerSecond * Time.deltaTime);
                 
-                if (target.IsDead()) { _closestEnemy = null; Debug.Log("Enemy Dead"); }
+                if (damageable.IsDead()) { _closestEnemy = null; Debug.Log("Enemy Dead"); }
             }
         } else
         {
@@ -87,7 +91,7 @@ public class HitscanTurret : Emplacement, IDamageable
             return;
         }
 
-        _closestEnemy = contacts[0].gameObject;
+        _closestEnemy = contacts[0].gameObject.GetComponent<EnemyNavMeshAgent>();
         float _closestDistance = Vector3.Distance(transform.position, _closestEnemy.transform.position);
 
         for (int i = 1; i < contacts.Length; i++)
@@ -95,7 +99,7 @@ public class HitscanTurret : Emplacement, IDamageable
             float distance = Vector3.Distance(transform.position, contacts[i].gameObject.transform.position);
             if (distance < _closestDistance) {
                 _closestDistance = distance;
-                _closestEnemy = contacts[i].gameObject;
+                _closestEnemy = contacts[i].gameObject.GetComponent<EnemyNavMeshAgent>();
             }
         }        
     }

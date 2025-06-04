@@ -14,7 +14,7 @@ public class ProjectileTurret : Emplacement
     [SerializeField] GameObject _turretObject;
     [SerializeField] Missile_Launcher _launcher;
 
-    [SerializeField] GameObject _closestEnemy;
+    [SerializeField] EnemyNavMeshAgent _closestEnemy;
 
     private void OnDrawGizmos()
     {
@@ -58,7 +58,10 @@ public class ProjectileTurret : Emplacement
         // If in target arc, fire
         if (Vector3.Angle(_turretObject.transform.forward, targetVector) < _targetingArc)
         {
-            _launcher.FireMissile(_closestEnemy.transform);
+            Transform target = _closestEnemy.OffsetTarget ? 
+                _closestEnemy.OffsetTarget.transform :
+                transform;
+            _launcher.FireMissile(target);
         }
     }
 
@@ -76,16 +79,15 @@ public class ProjectileTurret : Emplacement
             return;
         }
 
-        _closestEnemy = contacts[0].gameObject;
+        _closestEnemy = contacts[0].gameObject.GetComponent<EnemyNavMeshAgent>();
         float _closestDistance = Vector3.Distance(transform.position, _closestEnemy.transform.position);
-
         for (int i = 1; i < contacts.Length; i++)
         {
             float distance = Vector3.Distance(transform.position, contacts[i].gameObject.transform.position);
             if (distance < _closestDistance)
             {
                 _closestDistance = distance;
-                _closestEnemy = contacts[i].gameObject;
+                _closestEnemy = contacts[i].gameObject.GetComponent<EnemyNavMeshAgent>();
             }
         }
     }
