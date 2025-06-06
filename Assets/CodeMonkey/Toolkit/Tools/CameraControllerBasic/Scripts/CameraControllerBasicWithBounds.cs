@@ -37,7 +37,6 @@ namespace CodeMonkey.Toolkit.TCameraControllerBasic {
 
             Vector3 moveDir = transform.forward * inputVector.y + transform.right * inputVector.x;
             transform.position += moveDir * moveSpeed * Time.deltaTime;
-            Debug.Log(transform.position);
             transform.position = bounds.ClosestPoint(transform.position);
 
 

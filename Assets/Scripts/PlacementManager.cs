@@ -43,12 +43,16 @@ public class PlacementManager : MonoBehaviour
 
     void Start()
     {
-        _placementObject = Instantiate(_placementPrefab);
+        if (_placementPrefab != null)
+        {
+            _placementObject = Instantiate(_placementPrefab);
+        }
     }
 
     public void SetPlacementObject(GameObject placementObject)
     {
-        _placementObject = placementObject;
+        _placementPrefab = placementObject;
+        _placementObject = Instantiate(_placementPrefab);
     }
 
     // Update is called once per frame
@@ -80,6 +84,6 @@ public class PlacementManager : MonoBehaviour
 
     private bool DeterminePlacementValidity()
     {
-        throw new NotImplementedException();
+        return true;
     }
 }
