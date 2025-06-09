@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class PlacementManager : MonoBehaviour
 {
-    [SerializeField] GameObject _placementPrefab;
+    [SerializeField] Emplacement _placementPrefab;
 
     [SerializeField] Shader _invalidEffect;
     [SerializeField] Shader _validEffect;
 
-    GameObject _placementObject;
+    Emplacement _placementObject;
     
     bool _isValid;
     public bool IsValid { get { return _isValid; } 
@@ -19,7 +19,7 @@ public class PlacementManager : MonoBehaviour
             if (_isValid != value)
             {
                 // Change shader
-                foreach (Renderer renderer in GetComponents<Renderer>())
+                foreach (Renderer renderer in _placementObject.GetComponents<Renderer>())
                 {
                     foreach (Material material in renderer.materials)
                     {
@@ -27,7 +27,7 @@ public class PlacementManager : MonoBehaviour
                     }
                 }
 
-                foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+                foreach (Renderer renderer in _placementObject.GetComponentsInChildren<Renderer>())
                 {
                     foreach (Material material in renderer.materials)
                     {
@@ -45,13 +45,27 @@ public class PlacementManager : MonoBehaviour
     {
         if (_placementPrefab != null)
         {
-            _placementObject = Instantiate(_placementPrefab);
+            SetPlacementObject(_placementPrefab);
         }
     }
 
-    public void SetPlacementObject(GameObject placementObject)
+    public void SetPlacementObject(Emplacement incoming)
     {
-        _placementPrefab = placementObject;
+        Debug.Log("Attempting to change placement object to " + incoming);
+        if (_placementObject)
+        {
+            Destroy(_placementObject.gameObject);
+        }
+
+        _placementPrefab = incoming;
+
+        if (incoming == null)
+        {
+            Debug.Log("Null set");
+            return;
+        }
+
+        Debug.Log("Setting placement object to " + incoming.name, incoming);
         _placementObject = Instantiate(_placementPrefab);
     }
 
@@ -63,7 +77,9 @@ public class PlacementManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, _mouseColliderLayerMask))
             {
-                IsValid = DeterminePlacementValidity();
+                GameObject target = raycastHit.collider.gameObject;
+                PlacementObject targetObject = target.GetComponent<PlacementObject>();
+                IsValid = DeterminePlacementValidity(targetObject);
                 _placementObject.transform.position = raycastHit.collider.gameObject.transform.position;                
             }
             else
@@ -76,14 +92,22 @@ public class PlacementManager : MonoBehaviour
             {
                 if (_isValid)
                 {
-                    Instantiate(_placementPrefab, _placementObject.transform.position, Quaternion.identity);
+                    Emplacement placed = Instantiate(_placementPrefab, _placementObject.transform.position, Quaternion.identity);
+                    placed.SetActive(true);
+                    GameManager.Instance.ModifyCash(-_placementPrefab.Cost);
                 }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                SetPlacementObject(null);
+                // Contact UI Manager to un-highlight?
             }
         }
     }
 
-    private bool DeterminePlacementValidity()
+    private bool DeterminePlacementValidity(PlacementObject targetObject)
     {
-        return true;
+        return (targetObject != null && targetObject.TurretObject == null && _placementObject.Cost <= GameManager.Instance.Cash);
     }
 }

@@ -411,15 +411,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 20
+  _maxAttackers: 3
   _active: 0
   _cost: 200
-  _attackRange: 5
-  _damagePerSecond: 0.2
-  _turnSpeed: 1
+  _attackRange: 4
+  _damagePerSecond: 7
+  _turnSpeed: 10
   _targetingArc: 5
   _turretObject: {fileID: 9066720013912788477}
   _closestEnemy: {fileID: 0}
-  _idleTurnSpeed: 30
+  _idleTurnSpeed: 15
   _gun: {fileID: 7852425041452355188}
 --- !u!65 &3782748358896945231
 BoxCollider:

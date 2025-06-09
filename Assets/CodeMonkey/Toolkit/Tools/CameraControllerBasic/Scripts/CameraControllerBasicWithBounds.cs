@@ -15,13 +15,14 @@ namespace CodeMonkey.Toolkit.TCameraControllerBasic {
 
 
         [SerializeField] private float moveSpeed;
+        [SerializeField] private float zoomSpeed;
         [SerializeField] private float rotateAmount;
         [SerializeField] private Bounds bounds;
 
-        [SerializeField] Vector2 inputVector;
+        [SerializeField] Vector3 inputVector;
 
         private void Update() {
-            inputVector = new Vector2(0, 0);
+            inputVector = new Vector3(0, 0, 0);
             if (Input.GetKey(KeyCode.W)) {
                 inputVector.y = +1;
             }
@@ -34,9 +35,11 @@ namespace CodeMonkey.Toolkit.TCameraControllerBasic {
             if (Input.GetKey(KeyCode.D)) {
                 inputVector.x = +1;
             }
+            inputVector.z += Input.mouseScrollDelta.y * zoomSpeed;
+            
 
             Vector3 moveDir = transform.forward * inputVector.y + transform.right * inputVector.x;
-            transform.position += moveDir * moveSpeed * Time.deltaTime;
+            transform.position += moveDir * moveSpeed * Time.deltaTime + transform.up * inputVector.z;
             transform.position = bounds.ClosestPoint(transform.position);
 
 

@@ -217,10 +217,11 @@ MonoBehaviour:
   _end: {x: -20, y: 0, z: 0}
   _nearestTarget: {fileID: 0}
   _health: 10
+  _reward: 100
   _deathDelay: 0.5
   _offsetTarget: {fileID: 6572084442780318073}
-  _detectRange: 3
-  _attackRange: 2
+  _detectRange: 5
+  _attackRange: 3
   _damagePerSecond: 2
 --- !u!4 &1475758783420350335 stripped
 Transform:

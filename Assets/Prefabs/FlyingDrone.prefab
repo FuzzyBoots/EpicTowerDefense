@@ -98,7 +98,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -147,6 +147,7 @@ MonoBehaviour:
   _end: {x: 0, y: 0, z: 0}
   _nearestTarget: {fileID: 0}
   _health: 5
+  _reward: 100
   _deathDelay: 0.5
   _offsetTarget: {fileID: 7703557683835143734}
 --- !u!1001 &8146873557443575515

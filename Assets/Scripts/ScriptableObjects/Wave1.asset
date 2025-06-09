@@ -15,5 +15,12 @@ MonoBehaviour:
   _waveName: Enter the Clowns
   _spawns:
   - {fileID: 11400000, guid: d409552582760c948b04f7ef88c1c808, type: 2}
-  - {fileID: 11400000, guid: 3065cb732cf74b14dbc3d01895ee3ff9, type: 2}
+  - {fileID: 11400000, guid: df1b5bc777d9fc940880e5d20f98a2f0, type: 2}
+  - {fileID: 11400000, guid: e52cdc858cfe3584eabc7c80f01c6d5c, type: 2}
+  - {fileID: 11400000, guid: e52cdc858cfe3584eabc7c80f01c6d5c, type: 2}
+  - {fileID: 11400000, guid: df1b5bc777d9fc940880e5d20f98a2f0, type: 2}
+  - {fileID: 11400000, guid: df1b5bc777d9fc940880e5d20f98a2f0, type: 2}
+  - {fileID: 11400000, guid: e52cdc858cfe3584eabc7c80f01c6d5c, type: 2}
   - {fileID: 11400000, guid: d409552582760c948b04f7ef88c1c808, type: 2}
+  - {fileID: 11400000, guid: df1b5bc777d9fc940880e5d20f98a2f0, type: 2}
+  - {fileID: 11400000, guid: e52cdc858cfe3584eabc7c80f01c6d5c, type: 2}

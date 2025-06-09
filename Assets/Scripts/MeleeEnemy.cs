@@ -26,9 +26,15 @@ public class MeleeEnemy : EnemyNavMeshAgent
         // Debug.Log($"Getting targets in {colliders.Length} colliders");
         foreach (Collider collider in colliders)
         {
+            Debug.Log("Collider " + collider.gameObject.name);
             if (collider.TryGetComponent<PlayerAttackable>(out PlayerAttackable attackable))
             {
-                playerAttackables.Add(attackable);
+                Debug.Log($"Attacker Count: {attackable.AttackerCount()} Max Count: {attackable.MaxAttackers()}");
+                if (attackable.AttackerCount() < attackable.MaxAttackers())
+                {
+                    playerAttackables.Add(attackable);
+                    Debug.Log($"Adding attacker. Up to {attackable.AttackerCount()}");
+                }
             }
         }
         Debug.Log($"Fetched {playerAttackables.Count} targets", this);

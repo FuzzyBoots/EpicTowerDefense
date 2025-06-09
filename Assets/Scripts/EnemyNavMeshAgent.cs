@@ -121,7 +121,10 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
                     break;
                 }
                 _agent.SetDestination(_nearestTarget.gameObject.transform.position);
-                PerformAttack(_nearestTarget);
+                if (_nearestTarget.TryGetComponent<PlayerAttackable>(out PlayerAttackable attackable))
+                {
+                    PerformAttack(_nearestTarget);
+                }
                 break;
         }
                
