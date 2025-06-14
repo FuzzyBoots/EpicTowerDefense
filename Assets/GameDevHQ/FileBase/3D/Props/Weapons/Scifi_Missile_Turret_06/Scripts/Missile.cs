@@ -109,7 +109,6 @@ namespace GameDevHQ.FileBase.Missile_Launcher.Missile
 
                     _rigidbody.angularVelocity = turnAmount * _power; //apply angular velocity
                     _rigidbody.velocity = transform.forward * _power; //apply forward velocity
-
                 }
             }
 
@@ -151,8 +150,8 @@ namespace GameDevHQ.FileBase.Missile_Launcher.Missile
                 }
             }
 
-            if (_explosionPrefab != null)
-                Instantiate(_explosionPrefab, transform.position, Quaternion.identity); //instantiate explosion
+            GameObject explosion = ObjectPoolManager.Instance.GetFromPool(_explosionPrefab);
+            explosion.transform.position = transform.position;
 
             Destroy(this.gameObject); //destroy the rocket (this)
         }

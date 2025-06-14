@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObjectPoolManager))]
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] WaveObject[] _waves;
@@ -15,14 +14,11 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] GameObject _toiletMechPrefab;
     [SerializeField] GameObject _dronePrefab;
 
-    ObjectPoolManager _poolManager;
-
     private void Start()
     {
-        _poolManager = GetComponent<ObjectPoolManager>();
         // Let's initialize the ObjectPoolManager
-        _poolManager.CreatePool(_toiletMechPrefab, 15, 30);
-        _poolManager.CreatePool(_dronePrefab, 10, 30);
+        ObjectPoolManager.Instance.CreatePool(_toiletMechPrefab, 15, 30);
+        ObjectPoolManager.Instance.CreatePool(_dronePrefab, 10, 30);
 
 
         StartCoroutine(SpawnUnits());
@@ -51,7 +47,7 @@ public class EnemySpawnManager : MonoBehaviour
                     }
                     Debug.Log($"Spawning {spawn._agent.name} #{i+1}");
 
-                    GameObject agent = _poolManager.GetFromPool(spawn._agent.gameObject);
+                    GameObject agent = ObjectPoolManager.Instance.GetFromPool(spawn._agent.gameObject);
                     agent.transform.position = _spawnPos.position;
                     EnemyNavMeshAgent agentComponent = agent.GetComponent<EnemyNavMeshAgent>();
                     if (agentComponent != null)

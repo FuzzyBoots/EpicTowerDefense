@@ -120,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 9014952906875768456}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f99d74157cedc064f81cd71543972f71, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   _end: {x: 0, y: 0, z: 0}
   _nearestTarget: {fileID: 0}
   _health: 5
+  _reward: 100
   _deathDelay: 0.5
   _offsetTarget: {fileID: 7703557683835143734}
 --- !u!1001 &8146873557443575515
