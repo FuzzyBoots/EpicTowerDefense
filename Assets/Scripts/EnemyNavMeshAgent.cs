@@ -109,8 +109,6 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
             case EnemyState.Moving:
                 if (_agent)
                 {
-                    Debug.Log("Setting Destination as " + _end, this);
-                    
                     _agent.SetDestination(_end);
                 }
                 break;

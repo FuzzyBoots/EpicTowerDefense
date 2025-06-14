@@ -65,7 +65,7 @@ namespace GameDevHQ.FileBase.Missile_Launcher
 
         void FireRocketsRoutine(Transform target)
         {
-            GameObject rocket = Instantiate(_missilePrefab) as GameObject; //instantiate a rocket
+            GameObject rocket = ObjectPoolManager.Instance.GetFromPool(_missilePrefab); //instantiate a rocket
 
             rocket.transform.parent = _misslePositions[_missileIndex].transform; //set the rockets parent to the missile launch position 
             rocket.transform.localPosition = Vector3.zero; //set the rocket position values to zero

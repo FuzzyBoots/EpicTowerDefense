@@ -37,7 +37,6 @@ public class MeleeEnemy : EnemyNavMeshAgent
                 }
             }
         }
-        Debug.Log($"Fetched {playerAttackables.Count} targets", this);
 
         return playerAttackables.ToArray();
     }

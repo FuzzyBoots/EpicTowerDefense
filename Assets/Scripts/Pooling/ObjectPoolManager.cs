@@ -6,6 +6,18 @@ public class ObjectPoolManager : MonoBehaviour
 {
     private Dictionary<GameObject, ObjectPool<GameObject>> spawnPools = new Dictionary<GameObject, ObjectPool<GameObject>>();
 
+    public static ObjectPoolManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("There's more than one ObjectPoolManager! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     /// <summary>
     /// Creates a new ObjectPool for the given prefab if one doesn't already exist.
     /// </summary>
@@ -45,6 +57,7 @@ public class ObjectPoolManager : MonoBehaviour
         if (spawnPools.TryGetValue(prefab, out var pool))
         {
             return pool.Get();
+            Debug.Log($"Retrieved a {prefab.name} from the pool.");
         }
         else
         {
