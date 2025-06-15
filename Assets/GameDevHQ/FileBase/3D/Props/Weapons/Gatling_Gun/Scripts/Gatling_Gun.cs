@@ -69,6 +69,8 @@ namespace GameDevHQ.FileBase.Gatling_Gun
         // Method to rotate gun barrel 
         void RotateBarrel() 
         {
+            if (_gunBarrel == null) return;
+
             _gunBarrel.transform.Rotate(Vector3.forward * Time.deltaTime * -500.0f); //rotate the gun barrel along the "forward" (z) axis at 500 meters per second
 
         }

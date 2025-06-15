@@ -9866,7 +9866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyGoalPoint: {fileID: 213042050}
-  _currency: 300
+  _currency: 500
   _currencyText: {fileID: 2109062355}
   _lives: 100
   _livesText: {fileID: 783571177}
@@ -19596,7 +19596,7 @@ PrefabInstance:
     - target: {fileID: 4437064503943639279, guid: fe09c894319cde84585a0e21f980f458,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -2.61
       objectReference: {fileID: 0}
     - target: {fileID: 4437064503943639279, guid: fe09c894319cde84585a0e21f980f458,
         type: 3}

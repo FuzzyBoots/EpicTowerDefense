@@ -410,12 +410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fdc022fc904a74ab9204a76ef827c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 20
-  _maxAttackers: 3
+  _health: 15
   _active: 0
   _cost: 200
   _attackRange: 4
-  _damagePerSecond: 7
+  _damagePerSecond: 2
   _turnSpeed: 10
   _targetingArc: 5
   _turretObject: {fileID: 9066720013912788477}

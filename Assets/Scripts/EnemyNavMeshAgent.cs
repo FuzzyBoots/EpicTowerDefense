@@ -35,6 +35,7 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
     [SerializeField] float _deathDelay = 0.5f;
 
     [SerializeField] GameObject _offsetTarget;
+
     public GameObject OffsetTarget { get { return _offsetTarget; } private set { _offsetTarget = value; } }
 
     public void Damage(float damage)

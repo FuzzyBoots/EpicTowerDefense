@@ -12,7 +12,7 @@ public class MeleeEnemy : EnemyNavMeshAgent
     [SerializeField] float _attackRange = 1f;
 
     [SerializeField] float _damagePerSecond = 5f;
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position, _detectRange);
@@ -29,12 +29,7 @@ public class MeleeEnemy : EnemyNavMeshAgent
             Debug.Log("Collider " + collider.gameObject.name);
             if (collider.TryGetComponent<PlayerAttackable>(out PlayerAttackable attackable))
             {
-                Debug.Log($"Attacker Count: {attackable.AttackerCount()} Max Count: {attackable.MaxAttackers()}");
-                if (attackable.AttackerCount() < attackable.MaxAttackers())
-                {
-                    playerAttackables.Add(attackable);
-                    Debug.Log($"Adding attacker. Up to {attackable.AttackerCount()}");
-                }
+                playerAttackables.Add(attackable);                
             }
         }
         Debug.Log($"Fetched {playerAttackables.Count} targets", this);
