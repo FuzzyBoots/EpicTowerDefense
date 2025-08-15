@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HitscanTurret : Emplacement, IDamageable
+public class HitscanTurret : Emplacement
 {
     [SerializeField] float _attackRange = 1f;
     [SerializeField] float _damagePerSecond = 10f;
@@ -18,6 +18,29 @@ public class HitscanTurret : Emplacement, IDamageable
     [SerializeField] float _idleTurnSpeed = 0.2f;
 
     [SerializeField] Gatling_Gun _gun;
+
+    // Subscribe and unsubscribe from the death event
+    private void OnEnable()
+    {
+        GameEvents.onEntityDied += HandleTargetDeath;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.onEntityDied -= HandleTargetDeath;
+    }
+
+    // Event handler for when any entity dies
+    private void HandleTargetDeath(GameObject deadEntity)
+    {
+        // If the entity that died was our current target, find a new one.
+        if (_closestEnemy != null && deadEntity == _closestEnemy.gameObject)
+        {
+            _closestEnemy = null;
+            _gun.Firing = false;
+            // Debug.Log("Target died. Finding new target.");
+        }
+    }
 
     private void OnDrawGizmos()
     {
@@ -60,15 +83,10 @@ public class HitscanTurret : Emplacement, IDamageable
         if (Vector3.Angle(_turretObject.transform.forward, targetVector) < _targetingArc)
         {
             _gun.Firing = true;
-            
-            // Play the animation for firing
-            if (_closestEnemy.TryGetComponent<IDamageable>(out IDamageable damageable))
-            {
-                damageable.Damage(_damagePerSecond * Time.deltaTime);
-                
-                if (damageable.IsDead()) { _closestEnemy = null; Debug.Log("Enemy Dead"); }
-            }
-        } else
+
+            GameEvents.DamageTaken(_closestEnemy.gameObject, _damagePerSecond * Time.deltaTime);
+        }
+        else
         {
             _gun.Firing = false;
         }

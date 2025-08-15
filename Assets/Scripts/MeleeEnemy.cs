@@ -44,7 +44,7 @@ public class MeleeEnemy : EnemyNavMeshAgent
         {
             transform.forward = Vector3.RotateTowards(transform.forward, nearestTarget.transform.position, 1f, 1f);
             _animator.SetBool("Punching", true);
-            nearestTarget.Damage(_damagePerSecond * Time.deltaTime);
+            GameEvents.DamageTaken(nearestTarget.gameObject, _damagePerSecond * Time.deltaTime);
         } else
         {
             _animator.SetBool("Punching", false);

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Emplacement : PlayerAttackable, IDamageable
+[RequireComponent(typeof(Health))]
+public class Emplacement
 {
     [SerializeField] protected bool _active = false;
 

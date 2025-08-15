@@ -15,7 +15,8 @@ public enum EnemyState
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
-public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
+[RequireComponent (typeof(Health))]
+public abstract class EnemyNavMeshAgent : MonoBehaviour
 {
     [SerializeField] EnemyState _state = EnemyState.Moving;
     [SerializeField] Vector3 _end;
