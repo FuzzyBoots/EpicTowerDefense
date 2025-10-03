@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
@@ -9,8 +10,9 @@ public class EventManager : MonoBehaviour
     
     void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
+            Debug.Log("Set up instance");
             Instance = this;
         } else
         {
@@ -18,19 +20,13 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public Action<int> OnEnemyEnterRange;
-    public Action<int> OnEnemyExitRange;
-    public Action<int, float> OnAttackStart;
-    public Action<int> OnAttackEnd;
+    public Action<int, int> OnEnemyEnterRange;
+    public Action<int, int> OnEnemyExitRange;
+    public Action<int, int, float> OnDamage;
     public Action<int> OnEnemyDead;
 
-    public void DispatchAttackStart(int id, float damageAmount)
+    public void TriggerDamage(int attackerId, int targetId, float damageAmount)
     {
-        OnAttackStart?.Invoke(id, damageAmount);
-    }
-
-    public void DispatchAttackEnd(int id)
-    {
-        OnAttackEnd?.Invoke(id);
+        OnDamage?.Invoke(attackerId, targetId, damageAmount);
     }
 }

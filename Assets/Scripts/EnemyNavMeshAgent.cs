@@ -2,6 +2,7 @@ using AmazingAssets.AdvancedDissolve.Examples;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -40,10 +41,12 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
 
     public void Damage(float damage)
     {
+        Debug.Log("Taing damage: " + damage, this);
         _health -= damage;
 
         if (_health <= 0 && !_isDead)
         {
+            Debug.Log("Enemy died", this);
             HandleDeath();
         }
     }
@@ -73,6 +76,21 @@ public abstract class EnemyNavMeshAgent : MonoBehaviour, IDamageable
 
         _animator = GetComponent<Animator>();
         Assert.IsNotNull(_animator, "No animator found");
+
+        EventManager.Instance.OnDamage += HandleDamage;
+    }
+
+    private void HandleDamage(int attackerId, int targetId, float damage)
+    {
+        Debug.Log($"Damage Event id: {targetId} ({gameObject.GetInstanceID()} Damage: {damage}");
+        if (gameObject.GetInstanceID() != targetId) return;
+
+        Damage(damage);
+    }
+
+    void OnDestroy()
+    {
+        EventManager.Instance.OnDamage -= HandleDamage;
     }
 
     // Update is called once per frame

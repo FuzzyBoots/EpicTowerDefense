@@ -17,7 +17,7 @@ public class HitscanTurret : Emplacement, IDamageable
 
     [SerializeField] GameObject _turretObject;
 
-    [SerializeField] GameObject _closestEnemy;
+    [SerializeField, ReadOnly(true)] GameObject _closestEnemy;
     [SerializeField] float _idleTurnSpeed = 0.2f;
 
     [SerializeField] Gatling_Gun _gun;
@@ -54,10 +54,12 @@ public class HitscanTurret : Emplacement, IDamageable
     {
         if (other.CompareTag("EnemyTarget"))
         {
+            Debug.Log("Adding enemy " + other.gameObject.GetInstanceID(), other.gameObject);
             _enemyDict.Add(other.gameObject.GetInstanceID(), other.gameObject);
 
-            if (_closestEnemy != null)
+            if (_closestEnemy == null)
             {
+                Debug.Log("Setting closest enemy", other.gameObject);
                 _closestEnemy = other.gameObject;
             }
         }
@@ -68,9 +70,10 @@ public class HitscanTurret : Emplacement, IDamageable
         int instanceID = other.gameObject.GetInstanceID();
         if (other.CompareTag("EnemyTarget") && _enemyDict.ContainsKey(instanceID))
         {
+            Debug.Log("Removing enemy", other.gameObject);
             _enemyDict.Remove(instanceID);
 
-            if (_closestEnemy && _closestEnemy.GetInstanceID() == instanceID)
+            if (_closestEnemy != null && _closestEnemy.GetInstanceID() == instanceID)
             {
                 _closestEnemy = null;   // We'll find them in the Aim
                 // EventManager.Instance.StopFiring(_closestEnemy);
@@ -81,9 +84,9 @@ public class HitscanTurret : Emplacement, IDamageable
     private int? GetClosestEnemyID()
     {
         GameObject enemy = _closestEnemy;
-        while (!enemy.transform.root)
+        while (enemy.transform.parent)
         {
-            enemy = enemy.transform.root.gameObject;
+            enemy = enemy.transform.parent.gameObject;
             if (enemy.CompareTag("Enemy"))
             {
                 return enemy.GetInstanceID();
@@ -116,7 +119,8 @@ public class HitscanTurret : Emplacement, IDamageable
             int? enemyID = GetClosestEnemyID();
             if (enemyID != null)
             {
-                EventManager.Instance.DispatchAttackStart(enemyID, _damagePerSecond);
+                Debug.Log("Triggering damage to " + enemyID.Value + " for " + _damagePerSecond * Time.deltaTime);
+                EventManager.Instance.TriggerDamage(gameObject.GetInstanceID(), enemyID.Value, _damagePerSecond * Time.deltaTime);
             }
         } else
         {
